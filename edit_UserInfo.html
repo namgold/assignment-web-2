@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+
+    <link rel="stylesheet" href="css/aos.css">
+
+    <link rel="stylesheet" href="css/ionicons.min.css">
+
+    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="css/jquery.timepicker.css">
+
+
+    <link rel="stylesheet" href="css/flaticon.css">
+    <link rel="stylesheet" href="css/icomoon.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/custom.css">
+
+    <link rel="stylesheet" href="css/xi-custom.css">
+    <title>Sportify - About us</title>
+</head>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+ 
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar header-bar ftco-navbar-light" id="ftco-navbar">
+        <div class="container">
+            <a class="navbar-brand ml-2" href="index.html">Sportify</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
+                aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="oi oi-menu"></span> Menu
+            </button>
+
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active mr-3"><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item mr-3"><a href="shop-man.html" class="nav-link">Shopping</a></li>
+                    <li class="nav-item mr-3"><a href="about.html" class="nav-link">About</a></li>
+                    <li class="nav-item cta cta-colored mr-3"><a href="cart.html" class="nav-link"><span
+                                class="icon-shopping_cart"></span>[0]</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- <div class="hero-wrap hero-bread" style="background-image: url('images/bg_6.jpg');"> -->
+        <div class="container" style="padding-top: 100px">
+                <div class="row no-gutters slider-text align-items-center justify-content-center">
+                    <div class="col-md-9 ftco-animate text-center">
+                        <h1 class="mb-0 bread">Chỉnh sửa thông tin</h1>
+                    </div>
+                </div>
+            </div>
+            <!-- </div> -->
+    <div style="padding: 5%;">
+        <div style="text-align: center;">
+            <div class="row edit-div" >
+                <div class="col-md-3"></div>
+                <label class="col-md-2">User Name</label><br>
+                <input id='username' readonly placeholder="xi">
+            </div>
+            <div class="row edit-div">
+                <div class="col-md-3"></div>
+                <label class="col-md-2">Password</label><br>
+                <input id='password' type="password">
+                <span style="padding-left: 5px;" id='pasword-edit-err'></span>
+            
+                <br>
+            </div>
+            <div class="row edit-div">
+                    <div class="col-md-3"></div>
+                <label class="col-md-2">Display Name</label><br>
+                <input id='displayname'><br>
+                <span style="padding-left: 5px;" id='displayname-edit-err'></span>
+            </div>
+
+            <span id="err"></span><br>
+            <button class="btn btn-success" id="save">Save</button>
+        </div>
+    </div>
+    
+    <script>
+
+        $("#save").click(function(){
+            password = $("#password").val();
+            displayname = $("#displayname").val();
+            check = true;
+            if (password == "" && displayname == ""){
+                $("#err").text("Please enter new password or display name!");
+                check = false;
+                $("#password").focus();
+            }
+            else{
+                if (password != ''){
+                    if (password.length <=0 || password.length >99){
+                        $('#pass-edit-err').text("Invalid Password");
+                        check = false;
+                    }
+                }
+                if (displayname != ''){
+                    if (password.length <=0 || password.length >99){
+                        $('#displayname-edit-err').text("Invalid Display Name");
+                        check = false;
+                    }
+                }
+            }
+            if (check){
+                $.ajax({
+                    type: "POST",
+                    data:{
+                        password: password,
+                        displayname: displayname
+                    },
+                    url: "edit.php"
+                }).done(function(){                    
+                    $('#insert-div').css('display', '');            
+                    $('#displayname-edit-err').text('');
+                    $('#password-edit-err').text('');
+                    $('#err').text('');
+                    alert ("Edit Info Successfully!")
+                })
+            }
+        })
+    </script>
+
+    <footer class="footer-area ftco-footer ftco-section mt-4">
+        <div class="container">
+            <div class="row">
+                <div class="mouse">
+                    <a href="#" class="mouse-icon">
+                        <div class="mouse-wheel"><span class="ion-ios-arrow-up"></span></div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row d-flex align-items-end">
+            <div class="col-md-12 text-center">
+                <p>
+                    Đại học Bách Khoa - Khoa Khoa học Kỹ thuật máy tính
+                </p>
+                <p>
+                    Lập trình web - Lớp L02
+                </p>
+            </div>
+        </div>
+        </div>
+    </footer>
+
+
+
+    <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
+            <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
+                stroke="#F96D00" /></svg></div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.easing.1.3.js"></script>
+    <script src="js/jquery.waypoints.min.js"></script>
+    <script src="js/jquery.stellar.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/aos.js"></script>
+    <script src="js/jquery.animateNumber.min.js"></script>
+    <script src="js/bootstrap-datepicker.js"></script>
+    <script src="js/scrollax.min.js"></script>
+    <script src="js/google-map.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
